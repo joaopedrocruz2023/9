@@ -1,0 +1,92 @@
+const caixaPrincipal = document.querySelector(".caixa-principal");
+const caixaPerguntas = document.querySelector(".caixa-perguntas");
+const caixaAlternativas = document.querySelector(".caixa-alternativas");
+const caixaResultado = document.querySelector(".caixa-resultado");
+const textoResultado = document.querySelector(".texto-resultado");
+
+const perguntas = [
+    
+    {
+        enunciado: "Como você vê a Inteligência Artificial?",
+        alternativas: [
+            {
+                texto: "É incrível",
+                afirmacao: "afirmacao"
+            },
+            {
+                texto: "É assustador",
+                afirmacao: "afirmacao"
+            }
+        ]
+    },
+    {
+        enunciado: "O que você acredita que uma pessoa que trabalha em um meio artístico(Pintores, Dubladores, Designers, Desenhistas, etc.) pode se sentir ao ver a evolução da tecnologia(IA)",
+        alternativas: [
+            {
+                texto:  "Pode se sentir frustada, que perderá diversas oportunidades de demonstrar sua paixão.",
+                afirmacao: "afirmacao"
+            },
+            {
+                texto: "Pode considerar a Inteligência Artificial como uma forma de facilitar seus trabalhos.",
+                afirmacao: "afirmacao"
+            }
+           
+        ]
+    },
+    {
+        enunciado: "Pelo que você percebe, a Inteligência Artificial é usada atualmente da maneira adequada?",
+        alternativas: [
+            {
+                texto: "Sim e é uma ótima forma de percebermos a evolução tecnológica.",
+                afirmacao: "afirmacao"
+            },
+            {
+                texto: "Não, é usada na maioria das vezes apenas para facilitar, desvalorizando os valores pessoais.",
+                afirmacao: "afirmacao"
+            }
+            
+        ]
+    },
+    {
+        enunciado: "Em um futuro próximo como você imagina a Inteligência Artificial?",
+        alternativas: [
+            {
+                texto: "Evoluindo cada vez mais para facilitar diversas funções importantes",
+                afirmacao: "afirmacao"
+            },
+            {
+                texto: "Tirando a oportunidade de muitas pessoas",
+                afirmacao: "afirmacao"
+            }
+        ]
+    },
+  
+]; 
+
+
+let atual = 0;
+let perguntaAtual;
+let historiaFinal = "";
+
+function mostraPergunta() {
+    perguntaAtual = perguntas[atual];
+    caixaPerguntas.textContent = perguntaAtual.enunciado;
+    mostraAlternativas();
+}
+
+function mostraAlternativas(){
+    for(const alternativa of perguntaAtual.alternativas) {
+        const botaoAlternativas = document.createElement("button");
+        botaoAlternativas.textContent = alternativa.texto;
+        botaoAlternativas.addEventListener("click", () => respostaSelecionada(alternativa));
+        caixaAlternativas.appendChild(botaoAlternativas);
+    }
+}
+
+function respostaSelecionada(opcaoSelecionada){
+    const afirmacoes = opcaoSelecionada.afirmacoes;
+    historiaFinal = afirmacoes;
+    atual++;
+    mostraPergunta();
+}
+mostraPergunta();
